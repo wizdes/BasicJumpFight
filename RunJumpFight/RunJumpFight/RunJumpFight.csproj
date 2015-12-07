@@ -82,6 +82,9 @@
     <Content Include="data\sfx\cling.ogg" />
     <Content Include="data\sfx\jump.ogg" />
     <Content Include="data\sfx\stomp.ogg" />
+    <Content Include="data\map\area01.tmx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Properties\PublishProfiles\RunJumpFight20151206053550.pubxml" />
     <Content Include="README.md" />
     <None Include="Web.Debug.config">
