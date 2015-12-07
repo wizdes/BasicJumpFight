@@ -10,11 +10,23 @@ game.PlayerEntity = me.Entity.extend({
     ------ */
 
     init: function (x, y, settings) {
+        // save the area size defined in Tiled
+        var width = settings.width;
+        var height = settings.height;
+
+        // adjust the size setting information to match the sprite size
+        // so that the entity object is created with the right size
+        settings.framewidth = settings.width = 128;
+        settings.frameheight = settings.height = 256;
+
+        // redefine the default shape (used to define path) with a shape matching the renderable
+        settings.shapes[0] = new me.Rect(0, 0, settings.framewidth, 255);
+
         // call the constructor
         this._super(me.Entity, 'init', [x, y, settings]);
 
         // set the default horizontal & vertical speed (accel vector)
-        this.body.setVelocity(3, 15);
+        this.body.setVelocity(10, 33);
 
         // set the display to follow our position on both axis
         me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
@@ -23,7 +35,7 @@ game.PlayerEntity = me.Entity.extend({
         this.alwaysUpdate = true;
 
         // define a basic walking animation (using all frames)
-        this.renderable.addAnimation("walk", [0, 1, 2, 3, 4, 5, 6, 7]);
+        this.renderable.addAnimation("walk", [0, 8]);
         // define a standing animation (using the first frame)
         this.renderable.addAnimation("stand", [0]);
         // set the standing animation as default

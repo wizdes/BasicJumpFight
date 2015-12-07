@@ -12,7 +12,7 @@ var game = {
     // Run on page load.
     "onload": function () {
         // Initialize the video.
-        if (!me.video.init(640, 480, { wrapper: "screen", scale: "auto" })) {
+        if (!me.video.init(1280, 960, { wrapper: "screen", scale: "auto" })) {
             alert("Your browser does not support HTML5 canvas.");
             return;
         }
@@ -39,6 +39,8 @@ var game = {
 
     // Run on game resources loaded.
     "loaded": function () {
+
+        me.debug.renderHitBox = true;
         me.state.set(me.state.MENU, new game.TitleScreen());
         me.state.set(me.state.PLAY, new game.PlayScreen());
 
@@ -49,9 +51,9 @@ var game = {
 
         me.input.bindKey(me.input.KEY.RIGHT, "right");
         me.input.bindKey(me.input.KEY.LEFT, "left");
-        me.input.bindKey(me.input.KEY.SPACE, "jump");
+        me.input.bindKey(me.input.KEY.SPACE, "jump", true);
 
         // Start the game.
-        me.state.change(me.state.MENU);
+        me.state.change(me.state.PLAY);
     }
 };
